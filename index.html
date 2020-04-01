@@ -1,10 +1,44 @@
-<!-- Park API key:  DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parks API</title>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.7.1.min.js"
+    ></script>
+    <link rel="stylesheet" href="main.css" />
   </head>
-  <body></body>
+  <body>
+    <h1>National Parks API Example</h1>
+    <form id="form">
+      <div>
+        <label for="state">Which states would you like to search?</label>
+        <input type="text" id="state" />
+        <button id="addStateButton">Add state</button>
+        <div id="listContainer">
+          <h2>States to search:</h2>
+          <ul id="statesList"></ul>
+        </div>
+      </div>
+      <div>
+        <label for="numResults">Choose a number of results to display.</label>
+        <select name="numResults" id="numResults">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <input type="submit" id="submit" />
+    </form>
+    <script src="main.js"></script>
+  </body>
 </html>
