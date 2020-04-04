@@ -1,15 +1,11 @@
 let toSearchList = []; // holds states users want to add *Note: statesList li elements are added independently
-const options = {
-  headers: new Headers({
-    "X-Api-Key": "DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd",
-  }),
-};
+const api_key = "DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd";
 
 // https://developer.nps.gov/api/v1/parks?api_key=DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd
 
-function fetchParks() {
+function fetchParks(maxQueries) {
   return fetch(
-    "https://developer.nps.gov/api/v1/parks?limit=5&api_key=DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd"
+    `https://developer.nps.gov/api/v1/parks?limit=${maxQueries}&api_key=${api_key}`
   )
     .then(function (result) {
       if (result.ok) {
@@ -33,10 +29,12 @@ function handleAddState() {
 }
 
 function handleSubmit() {
+  // Calls fetchParks to do the actual fetching
   $("#form").on("click", "#submit", function (event) {
     event.preventDefault();
     $("#resultsContainer").html("<h2>Results Loading...</h2<");
-    fetchParks().then(function (result) {
+    fetchParks($("#numResults").val()).then(function (result) {
+      // #numResults is the select where users chose the number of queries
       $("#resultsContainer").html(`${result}`);
     });
   });
