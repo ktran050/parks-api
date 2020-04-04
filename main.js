@@ -1,31 +1,31 @@
 let toSearchList = []; // holds states users want to add *Note: statesList li elements are added independently
 const options = {
   headers: new Headers({
-    "X-Api-Key": "DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd"
-  })
+    "X-Api-Key": "DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd",
+  }),
 };
 
 // https://developer.nps.gov/api/v1/parks?api_key=DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd
 
 function fetchParks() {
-  fetch(
-    "https://developer.nps.gov/api/v1/parks?api_key=DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd"
+  return fetch(
+    "https://developer.nps.gov/api/v1/parks?limit=5&api_key=DytqKSWlz71A3zpgAJl8m0NxUDMko4SlH5Jmv6Jd"
   )
-    .then(function(result) {
+    .then(function (result) {
       if (result.ok) {
         return result.text();
       } else {
         throw new Error("fetch failed");
       }
     })
-    .then(function(result) {
-      console.log(result);
+    .then(function (result) {
+      return result;
     });
   console.log("here");
 }
 
 function handleAddState() {
-  $("#form").on("click", "#addStateButton", function(event) {
+  $("#form").on("click", "#addStateButton", function (event) {
     event.preventDefault();
     let userInput = $("#state").val();
     $("#statesList").append(`<li>${userInput}</li>`);
@@ -34,9 +34,13 @@ function handleAddState() {
 }
 
 function handleSubmit() {
-  $("#form").on("click", "#submit", function(event) {
+  $("#form").on("click", "#submit", function (event) {
     event.preventDefault();
-    fetchParks();
+    // load spinner
+    fetchParks().then(function (result) {
+      $("#resultsContainer").html(`${result}`);
+      // end spinner
+    });
   });
 }
 
