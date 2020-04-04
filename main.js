@@ -52,9 +52,9 @@ function drawResults(result, numResults) {
 }
 
 function createQueryString(toSearchList) {
-  // helper funtion to give us the query string for states
+  // helper function to give us the query string for states
   let queryString = "";
-  if (toSearchList.legnth === 1) {
+  if (toSearchList.length === 1) {
     // simple case where we search one state
     queryString = toSearchList[0];
   } else {
