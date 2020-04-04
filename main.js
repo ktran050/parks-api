@@ -21,7 +21,6 @@ function fetchParks() {
     .then(function (result) {
       return result;
     });
-  console.log("here");
 }
 
 function handleAddState() {
@@ -36,10 +35,9 @@ function handleAddState() {
 function handleSubmit() {
   $("#form").on("click", "#submit", function (event) {
     event.preventDefault();
-    // load spinner
+    $("#resultsContainer").html("<h2>Results Loading...</h2<");
     fetchParks().then(function (result) {
       $("#resultsContainer").html(`${result}`);
-      // end spinner
     });
   });
 }
